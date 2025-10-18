@@ -17,13 +17,6 @@ $pages = [
             "Redakcia" => "info@startitup.sk"
         ]
     ],
-    "Blog" => [
-        "content" => "Prinášame články, tipy a novinky zo sveta startupov, technológií a biznisu.",
-        "children" => [
-            "Novinky" => "Najnovšie správy zo Slovenska aj zahraničia.",
-            "Rozhovory" => "Rozhovory s odborníkmi, podnikateľmi a influencermi.",
-        ]
-    ],
     "Ochrana osobných údajov" => [
         "content" => "Vaše súkromie je pre nás dôležité. Dodržiavame GDPR a chránime vaše osobné údaje.",
         "children" => []

@@ -98,7 +98,7 @@ $blog_page_id = wp_insert_post([
     'post_name' => 'blog',
     'post_status' => 'publish',
     'post_type' => 'page',
-    'post_content' => 'Všetky články nájdete nižšie.',
+    'post_content' => '',
 ]);
 
 // --- Priraď stránku Blog ako "Posts page" ---
