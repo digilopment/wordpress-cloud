@@ -5,8 +5,8 @@ namespace AiHeadlines;
 use AiHeadlines\Admin\ACFIntegration;
 use AiHeadlines\Admin\AdminSettings;
 use AiHeadlines\Admin\AdminUI;
-use AiHeadlines\API\Routes;
-use AiHeadlines\CLI\GenerateTitlesCommand;
+use AiHeadlines\Api\Routes;
+use AiHeadlines\Cli\GenerateTitlesCommand;
 use WP_CLI;
 
 class Plugin

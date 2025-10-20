@@ -1,0 +1,9 @@
+{
+    "name": "digilopment/ai-headlines",
+    "autoload": {
+        "psr-4": {
+            "AiHeadlines\\": "src/"
+        }
+    },
+    "require": {}
+}

@@ -1,6 +1,6 @@
 <?php
 
-namespace AiHeadlines\API;
+namespace AiHeadlines\Api;
 
 use AiHeadlines\API\OpenAIClient;
 use AiHeadlines\Storage\TitlesRepository;

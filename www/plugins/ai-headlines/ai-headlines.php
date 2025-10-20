@@ -5,29 +5,18 @@
  * Version: 1.0.0
  * Author: Tomas Doubek
  */
+
 if (!defined('ABSPATH')) {
     exit;
 }
 
-
-require_once __DIR__ . '/src/Admin/AdminUI.php';
-require_once __DIR__ . '/src/Admin/ACFIntegration.php';
-require_once __DIR__ . '/src/Admin/AdminSettings.php';
-require_once __DIR__ . '/src/Api/OpenAIClient.php';
-require_once __DIR__ . '/src/Api/Routes.php';
-require_once __DIR__ . '/src/Storage/TitlesRepository.php';
-require_once __DIR__ . '/src/Utils/PromptBuilder.php';
-require_once __DIR__ . '/src/Utils/HeadlinePlaceHolder.php';
-require_once __DIR__ . '/src/Plugin.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
 use AiHeadlines\Plugin;
 use AiHeadlines\Storage\TitlesRepository;
 
-register_activation_hook(__FILE__, [TitlesRepository::class, 'create_table']);
+register_activation_hook(__FILE__, [TitlesRepository::class, 'createTable']);
 
-function ai_headlines_bootstrap()
-{
+add_action('plugins_loaded', function () {
     (new Plugin())->init();
-}
-
-add_action('plugins_loaded', 'ai_headlines_bootstrap');
+});

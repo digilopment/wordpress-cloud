@@ -1,6 +1,6 @@
 <?php
 
-namespace AiHeadlines\API;
+namespace AiHeadlines\Api;
 
 use AiHeadlines\Utils\HeadlinePlaceHolder;
 use AiHeadlines\Utils\PromptBuilder;
