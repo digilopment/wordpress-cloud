@@ -14,7 +14,8 @@ wp-content/plugins/markiza-ai-headlines/
 │   ├── Storage/
 │   │   └── TitlesRepository.php
 │   └── Utils/
-│       └── PromptBuilder.php
+│       ├─── HeadlinePlaceHolder.php
+│       └─── PromptBuilder.php
 │
 ├── assets/
 │   └── js/admin.js

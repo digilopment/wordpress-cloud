@@ -1,4 +1,4 @@
-jQuery(document).ready(function($) {
+jQuery(document).ready(function ($) {
     const postId = $('#post_ID').val();
     const nonce = $('#ai-headlines').data('nonce');
 
@@ -24,7 +24,7 @@ jQuery(document).ready(function($) {
     });*/
 
     // Kliknutie na title nastaví post title a uloží cez AJAX
-    $(document).on('click', '.ai-title-item', function() {
+    $(document).on('click', '.ai-title-item', function () {
         const selectedTitle = $(this).text();
 
         $.ajax({
@@ -36,14 +36,16 @@ jQuery(document).ready(function($) {
                 title: selectedTitle,
                 nonce: nonce
             },
-            success: function(resp) {
-                if(resp.success) location.reload();
+            success: function (resp) {
+                if (resp.success) {
+                    location.reload();
+                }
             }
         });
     });
 
     // Generovanie nových AI headlines po kliknutí na tlačidlo
-    $('#ai-headlines').on('click', function() {
+    $('#ai-headlines').on('click', function () {
         $.ajax({
             url: AiHeadlines.ajax_url,
             method: 'POST',
@@ -52,11 +54,11 @@ jQuery(document).ready(function($) {
                 post_id: postId,
                 nonce: nonce
             },
-            beforeSend: function() {
+            beforeSend: function () {
                 $('#ai-headlines-output').html('Generujem nadpisy...');
             },
-            success: function(response) {
-                if(response.success) {
+            success: function (response) {
+                if (response.success) {
                     let html = '<ul style="cursor:pointer;">';
                     response.data.titles.forEach(title => {
                         html += '<li class="ai-title-item">' + title + '</li>';

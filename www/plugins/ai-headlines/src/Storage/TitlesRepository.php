@@ -2,26 +2,35 @@
 
 namespace AiHeadlines\Storage;
 
+use wpdb;
+
 class TitlesRepository
 {
 
     private const TABLE_NAME = 'ai_title_suggestions';
 
-    private function getTableName()
+    private wpdb $wpdb;
+
+    public function __construct()
     {
         global $wpdb;
-        return $wpdb->prefix . self::TABLE_NAME;
+        $this->wpdb = $wpdb;
     }
 
-    public static function create_table()
+    private function getTableName(): string
+    {
+        return $this->wpdb->prefix . self::TABLE_NAME;
+    }
+
+    public static function createTable(): void
     {
         global $wpdb;
         $table = $wpdb->prefix . self::TABLE_NAME;
         $charset_collate = $wpdb->get_charset_collate();
 
         $sql = "CREATE TABLE IF NOT EXISTS $table (
-            id BIGINT AUTO_INCREMENT PRIMARY KEY,
-            post_id BIGINT NOT NULL,
+            id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            post_id BIGINT UNSIGNED NOT NULL,
             topic TEXT,
             titles LONGTEXT,
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP
@@ -31,33 +40,23 @@ class TitlesRepository
         dbDelta($sql);
     }
 
-    public function getByPostId($postId)
+    public function getByPostId(int $postId): ?object
     {
-        global $wpdb;
         $table = $this->getTableName();
-
-        $query = $wpdb->prepare("SELECT * FROM {$table} WHERE post_id = %d LIMIT 1", $postId);
-        return $wpdb->get_row($query);
+        return $this->wpdb->get_row($this->wpdb->prepare("SELECT * FROM {$table} WHERE post_id = %d LIMIT 1", $postId));
     }
 
-    public function store($post_id, $data)
+    public function save(int $postId, array $data): void
     {
-        global $wpdb;
-        $table = $this->getTableName();
-
-        $wpdb->insert($table, [
-            'post_id' => $post_id,
+        $this->wpdb->insert($this->getTableName(), [
+            'post_id' => $postId,
             'topic' => sanitize_text_field($data['topic'] ?? ''),
-            'titles' => json_encode($data['titles'] ?? []),
+            'titles' => wp_json_encode($data['titles'] ?? []),
         ]);
     }
 
-    public function deleteByPostId($postId)
+    public function deleteByPostId(int $postId): void
     {
-        global $wpdb;
-        $table = $this->getTableName();
-
-        $wpdb->delete($table, ['post_id' => $postId], ['%d']);
+        $this->wpdb->delete($this->getTableName(), ['post_id' => $postId], ['%d']);
     }
-
 }

@@ -4,7 +4,6 @@ namespace AiHeadlines\Admin;
 
 class ACFIntegration
 {
-
     public function register()
     {
         add_action('add_meta_boxes', [$this, 'add_ai_meta_box']);
@@ -38,8 +37,9 @@ class ACFIntegration
 
     public function enqueue_scripts($hook)
     {
-        if (!in_array($hook, ['post.php', 'post-new.php']))
+        if (!in_array($hook, ['post.php', 'post-new.php'])) {
             return;
+        }
 
         wp_enqueue_script(
             'ai-headlines-admin',
@@ -50,8 +50,7 @@ class ACFIntegration
         );
 
         wp_localize_script('ai-headlines-admin', 'AiHeadlines', [
-            'ajax_url' => admin_url('admin-ajax.php')
+            'ajax_url' => admin_url('admin-ajax.php'),
         ]);
     }
-
 }

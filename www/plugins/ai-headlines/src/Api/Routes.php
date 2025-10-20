@@ -52,7 +52,7 @@ class Routes
         if ($existing) {
             wp_send_json_success([
                 'topic' => $existing->topic,
-                'titles' => json_decode($existing->titles)
+                'titles' => json_decode($existing->titles),
             ]);
         }
 
@@ -60,7 +60,9 @@ class Routes
         $client = new OpenAIClient(get_option('ai_openai_api_key'));
         $response = $client->generateTitles($content);
 
-        $this->titlesRepository->store($post_id, $response);
+        if (isset($response['titles']) && isset($response['topic']) && count($response['titles']) > 0) {
+            $this->titlesRepository->save($post_id, $response);
+        }
 
         wp_send_json_success($response);
     }

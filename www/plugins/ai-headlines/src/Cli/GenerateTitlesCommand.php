@@ -1,14 +1,16 @@
 <?php
+
 namespace AiHeadlines\CLI;
 
-use WP_CLI;
-use WP_CLI_Command;
 use AiHeadlines\API\OpenAIClient;
 use AiHeadlines\Storage\TitlesRepository;
+use WP_CLI;
+use WP_CLI_Command;
 
 class GenerateTitlesCommand extends WP_CLI_Command
 {
     protected $titlesRepo;
+
     protected $client;
 
     public function __construct()
@@ -41,27 +43,26 @@ class GenerateTitlesCommand extends WP_CLI_Command
     public function generate($args, $assoc_args)
     {
         list($target) = $args;
-        $renew = isset($assoc_args['renew']); // globálny flag
+        $renew = isset($assoc_args['renew']);
 
-        // --- Výber článkov podľa vstupu ---
         if ($target === 'all') {
             $posts = get_posts([
-                'post_type'   => 'post',
+                'post_type' => 'post',
                 'numberposts' => -1,
                 'post_status' => ['publish', 'draft'],
             ]);
         } elseif (is_numeric($target)) {
             $posts = get_posts([
-                'category'    => intval($target),
-                'post_type'   => 'post',
+                'category' => intval($target),
+                'post_type' => 'post',
                 'numberposts' => -1,
                 'post_status' => ['publish', 'draft'],
             ]);
         } else {
             $ids = array_map('intval', explode(',', $target));
             $posts = get_posts([
-                'post_type'   => 'post',
-                'post__in'    => $ids,
+                'post_type' => 'post',
+                'post__in' => $ids,
                 'numberposts' => -1,
                 'post_status' => ['publish', 'draft'],
             ]);
@@ -72,7 +73,6 @@ class GenerateTitlesCommand extends WP_CLI_Command
             return;
         }
 
-        // --- Spracovanie ---
         foreach ($posts as $post) {
             $post_id = $post->ID;
 
@@ -91,11 +91,11 @@ class GenerateTitlesCommand extends WP_CLI_Command
             $post_content = $post->post_content ?: '';
             $titles = $this->client->generateTitles($post_content);
 
-            $this->titlesRepo->store($post_id, $titles);
+            $this->titlesRepo->save($post_id, $titles);
 
             WP_CLI::success("Post ID {$post_id} processed and titles saved.");
         }
 
-        WP_CLI::success("All selected posts processed successfully.");
+        WP_CLI::success('All selected posts processed successfully.');
     }
 }
