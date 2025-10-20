@@ -24,7 +24,7 @@ class Plugin
         (new AdminSettings())->register();
 
         if (defined('WP_CLI') && WP_CLI) {
-            WP_CLI::add_command('ai-gen', new GenerateTitlesCommand());
+            WP_CLI::add_command('ai-headlines', new GenerateTitlesCommand());
         }
     }
 }

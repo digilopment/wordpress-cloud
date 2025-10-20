@@ -2,7 +2,7 @@
 
 namespace AiHeadlines\Cli;
 
-use AiHeadlines\API\OpenAIClient;
+use AiHeadlines\Api\OpenAIClient;
 use AiHeadlines\Storage\TitlesRepository;
 use WP_CLI;
 use WP_CLI_Command;
