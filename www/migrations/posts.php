@@ -2,7 +2,7 @@
 require_once __DIR__ . '/autoload.php';
 
 // --- Konfigurácia ---
-$post_count = 100;
+$post_count = getenv('NUM_OF_POSTS_TO_IMPORT');
 $category_names = [
     "Technológie", "Lifestyle", "Cestovanie", "Zdravie", "Šport", "Biznis",
     "Veda", "Kultúra", "Zábava", "Gastro", "Móda", "Automoto", "Gaming",

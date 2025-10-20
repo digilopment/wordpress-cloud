@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/autoload.php';
 
-$product_count = 50;
+$product_count = getenv('NUM_OF_PRODUCTS_TO_IMPORT');
 $category_names = [
     "E-booky",
     "Online kurzy",

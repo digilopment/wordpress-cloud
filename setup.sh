@@ -19,9 +19,14 @@ bash symlinks.sh
 cd ../
 bash migration.sh users
 bash migration.sh pages
-bash migration.sh products
+if [ "$INSTALL_WOOCOMMERCE" = "true" ]; then
+    bash migration.sh products
+fi
 bash migration.sh posts
 bash migration.sh settings
-bash migration.sh woocommerceSettings
+
+if [ "$INSTALL_WOOCOMMERCE" = "true" ]; then
+    bash migration.sh woocommerceSettings
+fi
 
 bash wp.sh "wp theme activate $SELECTED_THEME --allow-root"
