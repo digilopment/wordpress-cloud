@@ -4,10 +4,19 @@ namespace AiHeadlines\Utils;
 
 class PromptBuilder
 {
-    public static function build($content): string
+    private HeadlinePlaceHolder $placeholder;
+
+    public function __construct()
     {
-        return "Analyze the following article and respond in JSON. 
-        Identify the main topic and propose 3–5 SEO-friendly titles.
-        Content:\n\n" . strip_tags($content);
+        $this->placeholder = new HeadlinePlaceHolder();
+    }
+
+    public function build($content): string
+    {
+        $jsonTemplate = $this->placeholder->generate();
+        $prompt = "Analyzuj nasledujúci článok a odpovedz vo formáte JSON presne podľa ukážky nižšie. Identifikuj hlavnú tému článku a navrhni 3–5 SEO-priateľských titulkov.\n";
+        $prompt .= json_encode($jsonTemplate, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        $prompt .= "\n\nObsah článku:\n\n" . strip_tags($content);
+        return $prompt;
     }
 }

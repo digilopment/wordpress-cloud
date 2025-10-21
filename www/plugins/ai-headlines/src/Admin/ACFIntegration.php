@@ -77,5 +77,4 @@ class ACFIntegration
             'ajax_url' => admin_url('admin-ajax.php'),
         ]);
     }
-
 }

@@ -13,10 +13,13 @@ class OpenAIClient
 
     private HeadlinePlaceHolder $placeholder;
 
+    private PromptBuilder $promptBuilder;
+
     public function __construct(string $api_key)
     {
         $this->api_key = $api_key;
         $this->placeholder = new HeadlinePlaceHolder();
+        $this->promptBuilder = new PromptBuilder();
     }
 
     public function generateTitles(string $content)
@@ -25,8 +28,7 @@ class OpenAIClient
             return $this->placeholder->generate();
         }
 
-        $prompt = PromptBuilder::build($content);
-
+        $prompt = $this->promptBuilder->build($content);
         $response = wp_remote_post($this->endpoint, [
             'headers' => [
                 'Authorization' => 'Bearer ' . $this->api_key,

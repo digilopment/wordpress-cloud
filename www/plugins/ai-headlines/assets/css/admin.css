@@ -5,6 +5,7 @@
     margin: 10px 0 0 0;
 }
 
+#ai_headlines_box .ai-main-topic,
 #ai_headlines_box .ai-title-item {
     padding: 8px 12px;
     margin-bottom: 6px;
@@ -14,6 +15,7 @@
     transition: background 0.2s, transform 0.1s;
 }
 
+#ai_headlines_box .ai-main-topic:hover,
 #ai_headlines_box .ai-title-item:hover {
     background: #e2e8f0;
     transform: translateX(3px);

@@ -7,7 +7,7 @@ class HeadlinePlaceHolder
     public function generate(): array
     {
         return [
-            'topic' => 'Sample Topic',
+            'topic' => 'Main Topic Title',
             'titles' => [
                 'Demo Title ' . rand(10, 100),
                 'Demo Title ' . rand(10, 100),
