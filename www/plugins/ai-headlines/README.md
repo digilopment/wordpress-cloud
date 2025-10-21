@@ -61,10 +61,10 @@ Chráni prístup cez nonce a kontrolu práv používateľa.
 
 Generovanie headlines cez CLI pre konkrétny článok/články:
    ```
-   wp ai-headlines generate <post_id>
-   wp ai-headlines generate <post_id>
-   wp ai-headlines generate <post_id>,<post_id>,<post_id>
-   wp ai-headlines generate all
+   wp ai-headlines generate 1 #update pre kategoriu
+   wp ai-headlines generate 25, #update pre jeden clanok
+   wp ai-headlines generate 25,26,27 #update pre viac clankov
+   wp ai-headlines generate all #update pre vsetky clanky
    ```
 Parameter `--renew ` ako argument pregeneruje všetky headlines v databaze aj tie ktoré už boli vygenerované
 
