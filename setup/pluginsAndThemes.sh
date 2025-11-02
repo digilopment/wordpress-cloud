@@ -21,7 +21,11 @@ if [ "$INSTALL_WOOCOMMERCE" = "true" ]; then
 fi
 
 bash wp.sh "wp plugin install generate-child-theme --activate"
+bash wp.sh "wp plugin install classic-editor --activate"
+
 bash wp.sh "wp plugin activate ai-headlines"
+bash wp.sh "wp plugin activate content-paste-analyzer"
+
 
 #bash add.sh plugin https://downloads.wordpress.org/plugin/woocommerce-services.latest-stable.zip
 #bash add.sh plugin https://downloads.wordpress.org/plugin/woocommerce-payments.latest-stable.zip

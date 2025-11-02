@@ -1,6 +1,12 @@
 #!/bin/bash
 set -e
 
+if [ -e ./.env ]; then
+    . ./.env
+else
+    . ./.env.dev
+fi
+
 wp() {
     local cmd="$1"
 
@@ -9,7 +15,7 @@ wp() {
         return 1
     fi
 
-    docker exec -i wordpress-cloud-php bash -c "cd /var/www/html/wordpress && $cmd --allow-root"
+    docker exec -i ${PHP_HOST} bash -c "cd ${CONTAINER_DIR}/wordpress && $cmd --allow-root"
 }
 
 wp "$1"

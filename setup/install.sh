@@ -8,7 +8,7 @@ else
 fi
 
 
-docker exec -u root -it wordpress-cloud-php bash -c "cd /var/www/html/wordpress && wp core install \
+docker exec -u root -it ${PHP_HOST} bash -c "cd ${CONTAINER_DIR}/wordpress && wp core install \
   --url='${DOMAIN}' \
   --title='$TITLE' \
   --admin_user='$DEFAULT_USER' \

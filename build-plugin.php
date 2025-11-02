@@ -43,7 +43,7 @@ if (file_exists($outputZip)) {
 mkdir($buildDir, 0755, true);
 
 // --- Kopírovanie pluginu do dočasného buildu s vylúčením súborov ---
-$exclude = ['.git', 'node_modules', 'tests'];
+$exclude = ['.git', 'node_modules', 'nbproject', '.github', '.phpunit.result.cache'];
 $excludePatterns = ['*.log', '*.DS_Store'];
 
 $iterator = new RecursiveIteratorIterator(

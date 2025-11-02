@@ -1,6 +1,12 @@
 #!/bin/bash
 set -e
 
+if [ -e ./.env ]; then
+    . ./.env
+else
+    . ./.env.dev
+fi
+
 add() {
     local type="$1"    # plugin | theme
     local target="$2"  # názov alebo URL
@@ -17,8 +23,8 @@ add() {
         install_target="$target"
     fi
 
-    docker exec -u root -it wordpress-cloud-php bash -c "
-        cd /var/www/html/wordpress && \
+    docker exec -u root -it ${PHP_HOST} bash -c "
+        cd ${CONTAINER_DIR}/wordpress && \
         wp ${type} install '${install_target}' --activate --allow-root
     "
 }
