@@ -19,6 +19,7 @@ echo "✅ Database '${DB_NAME}' is ready."
 cd setup
 bash init.sh
 bash install.sh
+bash clonePluginsAndThemes.sh
 bash symlinks.sh
 bash pluginsAndThemes.sh
 

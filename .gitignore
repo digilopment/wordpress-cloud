@@ -1,2 +1,4 @@
 volumes/*
 www/wordpress*
+www/plugins*
+www/themes*
