@@ -4,6 +4,11 @@
 # ./install.sh [--force]
 # Ak zadáš --force, najprv zmaže DB a potom ju znova vytvorí.
 
+if [ ! -f .env ]; then
+    echo ".env file not found, copying from .env.sample..."
+    cp .env.sample .env
+fi
+
 . ./.env
 
 if [ "$1" == "--force" ]; then
